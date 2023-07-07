@@ -1,0 +1,55 @@
+Estudo do PID:
+
+Informações sobre o carro: (Retiradas do roboton.io)
+
+Engine Torque: 
+
+	-min: 0Nm, max: 5000Nm. 
+	- Torque é divido nas rodas de trás, raio de 0.4m
+
+Steering Angle:
+	- min: -pi/4 rad, max: pi/4 rad.
+	- Positivo -> Direita, Negativo -> Esquerda
+	- Pi/4 = 0.785 aproximadamente
+
+
+3 variaveis de controle: Proporcionais, Integrais e Derivativas. (Informações tiradas do site do Alex)
+
+
+Proporcionais:
+	- Se Kp for pequeno implica em curvas com viradas leves, seguindo mais o caminho, ir reto
+	- Se Kp for grande implica em curvas com viradas bruscas (F Detran), oscila quando tiver na linha reta
+	- Se Kp muito grande pode inclusive sair da linha
+	- Alex usou na aula
+	- P = erro -> Kp*P
+
+Integrais:
+	- Logica de integral de riemman soma os erros.
+	- Usa o histórico de erros
+	- Se erro = 0, o I não aumenta mais
+	-  Diminui oscilação do robô
+	- I += erro, Ki*I
+	- Um Ki alto aumenta a oscilação do robô
+
+Derivativas:
+	- Calcula erro atual e anterior
+	- Curvas mt acentuadas terão mudanças mais rapidas, assim D é maior
+	- Quanto maior D, ou seja, a mudança brusca no erro, melhor o controle/menor oscilação
+	- Kd baixo -> Talvez não faça diferença
+	- Kd alto -> Erro no progama inteiro 
+	- D = erro - ult_erro //ult_erro é o ultimo erro
+
+Testes (const EngineTorque = 1000):
+
+Kp = 0.2, Ki = 0.03, Kd = 0.6. PV = 12.43, MV = 7.20 (Base)
+Kp = 0.2, Ki = 0.04, Kd = 0.6. PV = 12.45, MV = 7.17 (Final da curva da uma mexidinha)
+Kp = 0.2, Ki = 0.04, Kd = 0.65. PV = 12.53, MV = 7.28 (Ganha menos velocidade nas curvas)
+Kp = 0.2, Ki = 0.04, Kd = 0.7. PV = 12.56, MV = 7.26 (Aumentar o Kd não vai ajudar em velocidade e mudar pouco não vai ajudar, tem que mudar de 0.1)
+Kp = 0.2, Ki = 0.04, Kd = 0.5. PV = 12.35, MV = 7.14 (Ficou mais rapido, curva mais aberta)
+Kp = 0.2, Ki = 0.04, Kd = 0.4. PV = 12.29, MV = 7.10 (Ficou mais rapido)
+Kp = 0.2, Ki = 0.04, Kd = 0.35. PV = 12.32, MV = 7.12 (Começa a ser menos preciso e perder velocidade)
+
+
+
+Testes (velocidade variavel): Não deu tempo direito :(
+Kp = 0.2, Ki = 0.04, Kd = 0.35. PV = 10.14, MV = 7.12 
