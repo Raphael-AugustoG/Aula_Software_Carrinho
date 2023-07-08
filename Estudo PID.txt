@@ -51,5 +51,29 @@ Kp = 0.2, Ki = 0.04, Kd = 0.35. PV = 12.32, MV = 7.12 (Começa a ser menos preci
 
 
 
-Testes (velocidade variavel): Não deu tempo direito :(
-Kp = 0.2, Ki = 0.04, Kd = 0.35. PV = 10.14, MV = 7.12 
+Testes (velocidade variavel, 1500 e 5000): 
+Kp = 0.2, Ki = 0.04, Kd = 0.4, AnglePar = 0.01 PV = -----, MV = ------ (Não completa)
+Kp = 0.4, Ki = 0.04, Kd = 0.4, AnglePar = 0.01 PV = 9.17 , MV = 7.14 (Só faz 2 voltas)
+Kp = 0.5, Ki = 0.04, Kd = 0.4, AnglePar = 0.01 PV = 8.99, MV = 7.33 (Mais lento doq constante) 
+Kp = 0.4, Ki = 0.04, Kd = 0.4, AnglePar = 0.015 PV = 8.40, MV = 7.07 (Só faz 2 voltas)
+
+
+Testes (velocidade variavel, 1500 e 4000):
+Kp = 0.43, Ki = 0.04, Kd = 0.4, AnglePar = 0.015 PV = 9.10, MV = 6.96 (Só faz 3 voltas)
+Kp = 0.43, Ki = 0.04, Kd = 0.4, AnglePar = 0.011 PV = 9.01, MV = 7.07 (Só faz 4 voltas)
+Kp = 0.43, Ki = 0.039, Kd = 0.41, AnglePar = 0.011 PV = 9.20, MV = 7.12 
+
+Ideia: Fazer uma função tal que a enginetorque não vá de 1500 para 4000 de uma vez, progessão linear.
+
+Testes Ideia:
+Kp = 0.43, Ki = 0.039, Kd = 0.41, AnglePar = 0.011 PV = 10.11, MV = 6.96 (Só faz 3 voltas, mas a ideia funciona)
+Kp = 0.43, Ki = 0.039, Kd = 0.41, AnglePar = 0.015 PV = 10.08, MV = 6.94 (Mudar as constantes talvez resolva problema de voar)
+Kp = 0.43, Ki = 0.0395, Kd = 0.4, AnglePar = 0.015 PV = 10.03, MV = 6.98 (Da voltas infinitas)
+Kp = 0.43, Ki = 0.04, Kd = 0.4, AnglePar = 0.02 PV = 9.10, MV = 7.01 (Chega até a fazer mais rapido depois da terceira volta)
+Kp = 0.43, Ki = 0.04, Kd = 0.41, AnglePar = 0.017 PV = 9.60, MV = 6.99 (Esse não voa)
+Kp = 0.43, Ki = 0.04, Kd = 0.4, AnglePar = 0.0168 PV = 9.12, MV = 7.04 (Perde um pouco de velocidade)
+
+Observações:
+Kd = 0.4 parece ser o ideal para conseguir voltas mais rapidas
+Kp influencia muito a velocidade, ao mesmo tempo ajuda muito a ficar na pista
+Ki qualquer mudança minuscula já muda tudo
